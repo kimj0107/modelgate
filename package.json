@@ -1,0 +1,30 @@
+{
+  "name": "modelgate",
+  "version": "0.1.0",
+  "description": "A bounded, cancellation-aware SSE normalization gateway",
+  "type": "module",
+  "license": "MIT",
+  "bin": { "modelgate": "dist/src/cli.js" },
+  "exports": {
+    ".": {
+      "types": "./dist/src/gateway.d.ts",
+      "import": "./dist/src/gateway.js"
+    }
+  },
+  "files": ["dist/src", "README.md", "LICENSE"],
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test dist/test/*.test.js",
+    "start": "node dist/src/cli.js",
+    "demo": "npm run build && node dist/src/cli.js --demo",
+    "demo:smoke": "npm run build && node dist/src/cli.js --demo --smoke",
+    "smoke:package": "npm run build && node scripts/package-smoke.mjs",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0"
+  }
+}
